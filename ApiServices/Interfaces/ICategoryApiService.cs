@@ -9,6 +9,5 @@ namespace BlogAppClient.ApiServices.Interfaces
    public interface ICategoryApiService
     {
         Task<List<CategoryListModel>> GetAll();
-
     }
 }

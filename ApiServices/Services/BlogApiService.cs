@@ -15,9 +15,10 @@ namespace BlogAppClient.ApiServices.Services
          
         public BlogApiService(HttpClient httpClient)
         {
-            httpClient.BaseAddress = new Uri("http://localhost:52624/api/blogs");
-            this.httpClient = httpClient;   
+            this.httpClient = httpClient;
+            this.httpClient.BaseAddress = new Uri("http://localhost:52624/api/blogs");
         }
+
 
         public async Task<List<BlogListModel>> GetAll()
         {
@@ -30,7 +31,16 @@ namespace BlogAppClient.ApiServices.Services
                 return deserializedResult;
             }
             return null;
-            
+        }
+
+        public async Task<BlogListModel> GetById(int id)
+        {
+            var responseMessage = await httpClient.GetAsync($"blogs/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<BlogListModel>(await responseMessage.Content.ReadAsStringAsync());
+            }
+            return null;
         }
     }
 }

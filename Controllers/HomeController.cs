@@ -23,5 +23,12 @@ namespace BlogAppClient.Controllers
 
             return View(blogs);
         }
+
+        public async Task<IActionResult> BlogDetailAsync(int id)
+        {
+            var blog = await blogApiService.GetById(id);
+
+            return View(blog); 
+        }
     }
 }

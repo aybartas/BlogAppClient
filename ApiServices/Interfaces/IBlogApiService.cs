@@ -9,5 +9,6 @@ namespace BlogAppClient.ApiServices.Interfaces
     public interface IBlogApiService
     {
         Task<List<BlogListModel>> GetAll();
+        Task<BlogListModel> GetById(int id);
     }
 }
